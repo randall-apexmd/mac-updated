@@ -1,0 +1,160 @@
+{
+  "redirects": [
+    {
+      "source": "/about",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/bloodwork",
+      "destination": "/bloodwork.html",
+      "permanent": true
+    },
+    {
+      "source": "/bloodwork/",
+      "destination": "/bloodwork.html",
+      "permanent": true
+    },
+    {
+      "source": "/glp-1-microdosing",
+      "destination": "/glp-1-microdosing.html",
+      "permanent": true
+    },
+    {
+      "source": "/glp-1-microdosing/",
+      "destination": "/glp-1-microdosing.html",
+      "permanent": true
+    },
+    {
+      "source": "/hormones",
+      "destination": "/hormones.html",
+      "permanent": true
+    },
+    {
+      "source": "/hormones/",
+      "destination": "/hormones.html",
+      "permanent": true
+    },
+    {
+      "source": "/nad",
+      "destination": "/nad.html",
+      "permanent": true
+    },
+    {
+      "source": "/nad/",
+      "destination": "/nad.html",
+      "permanent": true
+    },
+    {
+      "source": "/sermorelin-2",
+      "destination": "/sermorelin.html",
+      "permanent": true
+    },
+    {
+      "source": "/sermorelin-2/",
+      "destination": "/sermorelin.html",
+      "permanent": true
+    },
+    {
+      "source": "/sermorelin",
+      "destination": "/sermorelin.html",
+      "permanent": true
+    },
+    {
+      "source": "/sermorelin/",
+      "destination": "/sermorelin.html",
+      "permanent": true
+    },
+    {
+      "source": "/testosterone",
+      "destination": "/testosterone.html",
+      "permanent": true
+    },
+    {
+      "source": "/testosterone/",
+      "destination": "/testosterone.html",
+      "permanent": true
+    },
+    {
+      "source": "/weight-loss",
+      "destination": "/weight-loss.html",
+      "permanent": true
+    },
+    {
+      "source": "/weight-loss/",
+      "destination": "/weight-loss.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/faq/",
+      "destination": "/faq.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works/",
+      "destination": "/how-it-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/glp-1-microdosing-3",
+      "destination": "/glp-1-microdosing.html",
+      "permanent": true
+    },
+    {
+      "source": "/glp-1-microdosing-3/",
+      "destination": "/glp-1-microdosing.html",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    },
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

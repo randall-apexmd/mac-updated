@@ -1,0 +1,6 @@
+# Live site: crawling allowed.
+# The *.vercel.app test address is separately blocked from indexing
+# by an X-Robots-Tag header in vercel.json, so it cannot compete
+# with the real domain in search results.
+User-agent: *
+Allow: /

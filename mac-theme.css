@@ -1,0 +1,1038 @@
+/* =========================================================
+   THE M.A.C. × APEX MD — Brand CSS
+   Accent sampled from the MAC Intro Launch kit.
+   ========================================================= */
+
+/* ---------- Brand Variables ---------- */
+:root {
+  --mac-black: #101010;          /* dark ground */
+  --mac-charcoal: #1A1A1A;
+  --mac-gray-900: #242424;
+  --mac-gray-700: #595959;
+  --mac-gray-500: #8C8C8C;
+  --mac-gray-300: #D9D9D9;
+  --mac-gray-200: #E9E7E1;       /* desk */
+  --mac-gray-100: #F5F2ED;       /* light ground */
+  --mac-white: #FFFFFF;
+
+  /* Accent — MAC × Apex MD red.
+     --mac-red    : deep tone. CTA fills, and red TEXT on light grounds.
+     --mac-red-bright / -light : vivid tones. Use ONLY on dark grounds;
+     #FF4A38 on white is ~1.9:1 and fails contrast. */
+  --mac-red: #C50806;
+  --mac-red-dark: #9E0604;
+  --mac-red-bright: #FF4A38;
+  --mac-red-light: #FF8A7C;
+
+  --mac-font-display: "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  --mac-font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mac-font-mono: Menlo, "SF Mono", ui-monospace, Consolas, monospace;
+
+  --mac-radius-sm: 10px;
+  --mac-radius-md: 18px;
+  --mac-radius-lg: 28px;
+  --mac-radius-pill: 999px;
+
+  --mac-shadow: 0 18px 50px rgba(0, 0, 0, 0.10);
+  --mac-shadow-hover: 0 24px 70px rgba(0, 0, 0, 0.16);
+
+  --mac-container: 1240px;
+  --mac-section-space: clamp(72px, 9vw, 140px);
+  --mac-transition: 220ms ease;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--mac-white);
+  color: var(--mac-black);
+  font-family: var(--mac-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* ---------- Layout ---------- */
+.mac-container {
+  width: 100%;
+  max-width: calc(var(--mac-container) + 80px);
+  padding-inline: 40px;
+  margin-inline: auto;
+}
+
+.mac-section {
+  padding-block: var(--mac-section-space);
+}
+
+.mac-section--tight {
+  padding-block: clamp(48px, 6vw, 88px);
+}
+
+.mac-section--dark {
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-section--soft {
+  background: var(--mac-gray-100);
+}
+
+.mac-grid {
+  display: grid;
+  gap: clamp(24px, 3vw, 42px);
+}
+
+.mac-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mac-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mac-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* ---------- Typography ---------- */
+.mac-kicker,
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mac-kicker::before,
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 3px;
+  background: var(--mac-red);
+}
+
+h1,
+h2,
+h3,
+.mac-display {
+  margin-top: 0;
+  font-family: var(--mac-font-display);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+h1,
+.mac-h1 {
+  font-size: clamp(3.5rem, 8vw, 8.75rem);
+}
+
+h2,
+.mac-h2 {
+  font-size: clamp(2.5rem, 5.5vw, 5.6rem);
+}
+
+h3,
+.mac-h3 {
+  font-size: clamp(1.6rem, 2.7vw, 2.8rem);
+}
+
+p {
+  margin: 0 0 1.25em;
+}
+
+.mac-lead {
+  max-width: 760px;
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.55;
+}
+
+.mac-muted {
+  color: var(--mac-gray-700);
+}
+
+.mac-section--dark .mac-muted {
+  color: #BBBBBB;
+}
+
+/* ---------- Header / Navigation ---------- */
+.mac-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.mac-nav {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.mac-logo {
+  max-width: 150px;
+}
+
+.mac-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mac-nav__links a {
+  position: relative;
+  padding-block: 8px;
+}
+
+.mac-nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 2px;
+  background: var(--mac-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--mac-transition);
+}
+
+.mac-nav__links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ---------- Buttons ---------- */
+.mac-btn,
+button.mac-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 26px;
+  border: 2px solid var(--mac-black);
+  border-radius: var(--mac-radius-pill);
+  background: var(--mac-black);
+  color: var(--mac-white);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--mac-transition),
+    background var(--mac-transition),
+    color var(--mac-transition),
+    border-color var(--mac-transition);
+}
+
+.mac-btn:hover {
+  transform: translateY(-2px);
+  background: var(--mac-red);
+  border-color: var(--mac-red);
+}
+
+.mac-btn--outline {
+  background: transparent;
+  color: var(--mac-black);
+}
+
+.mac-btn--outline:hover {
+  color: var(--mac-white);
+}
+
+.mac-section--dark .mac-btn--outline {
+  border-color: var(--mac-white);
+  color: var(--mac-white);
+}
+
+.mac-btn--red {
+  border-color: var(--mac-red);
+  background: var(--mac-red);
+}
+
+.mac-btn--red:hover {
+  border-color: var(--mac-red-dark);
+  background: var(--mac-red-dark);
+}
+
+/* ---------- Hero ---------- */
+.mac-hero {
+  position: relative;
+  min-height: 78vh;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
+.mac-hero__media img,
+.mac-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mac-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.12) 10%, rgba(0,0,0,0.78) 100%);
+}
+
+.mac-hero__content {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(80px, 10vw, 140px) clamp(60px, 7vw, 100px);
+}
+
+.mac-hero h1 {
+  max-width: 980px;
+  margin-bottom: 24px;
+}
+
+.mac-hero p {
+  max-width: 700px;
+  font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+}
+
+/* ---------- Split Editorial Section ---------- */
+.mac-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(36px, 7vw, 100px);
+  align-items: center;
+}
+
+.mac-split--lead {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+}
+
+.mac-split__media {
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: var(--mac-radius-lg);
+}
+
+.mac-split__media img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+/* ---------- Cards ---------- */
+.mac-card {
+  overflow: hidden;
+  border: 1px solid var(--mac-gray-200);
+  border-radius: var(--mac-radius-md);
+  background: var(--mac-white);
+  transition:
+    transform var(--mac-transition),
+    box-shadow var(--mac-transition);
+}
+
+.mac-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--mac-shadow-hover);
+}
+
+.mac-card__image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--mac-gray-100);
+}
+
+.mac-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 450ms ease;
+}
+
+.mac-card:hover .mac-card__image img {
+  transform: scale(1.035);
+}
+
+.mac-card__body {
+  padding: clamp(22px, 3vw, 34px);
+}
+
+.mac-card__body h3 {
+  margin-bottom: 12px;
+}
+
+.mac-card__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Pillar / Method Cards ---------- */
+.mac-pillar {
+  padding: 30px 0;
+  border-top: 1px solid var(--mac-gray-300);
+}
+
+.mac-pillar:last-child {
+  border-bottom: 1px solid var(--mac-gray-300);
+}
+
+.mac-pillar__title {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.mac-pillar__title strong {
+  font-family: var(--mac-font-display);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mac-pillar__title span {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* ---------- Image Tiles / Locations ---------- */
+.mac-tile {
+  position: relative;
+  min-height: 460px;
+  overflow: hidden;
+  border-radius: var(--mac-radius-md);
+  background: var(--mac-charcoal);
+  color: var(--mac-white);
+}
+
+.mac-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.mac-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.82) 100%);
+}
+
+.mac-tile:hover img {
+  transform: scale(1.045);
+}
+
+.mac-tile__content {
+  position: absolute;
+  z-index: 2;
+  inset: auto 28px 28px;
+}
+
+.mac-tile__content h3 {
+  margin-bottom: 8px;
+}
+
+/* ---------- Feature Strip ---------- */
+.mac-feature-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mac-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: 1px solid var(--mac-gray-300);
+  border-radius: var(--mac-radius-pill);
+  background: var(--mac-white);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Accent Rule ---------- */
+.mac-rule {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background: var(--mac-gray-300);
+}
+
+.mac-rule--red {
+  width: 72px;
+  height: 4px;
+  background: var(--mac-red);
+}
+
+/* ---------- CTA Banner ---------- */
+.mac-cta {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(48px, 7vw, 92px);
+  border-radius: var(--mac-radius-lg);
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-cta::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 6px;
+  top: 0;
+  left: 0;
+  background: var(--mac-red);
+}
+
+.mac-cta h2 {
+  max-width: 900px;
+  margin-bottom: 22px;
+}
+
+/* ---------- Forms ---------- */
+.mac-field {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--mac-gray-300);
+  border-radius: var(--mac-radius-sm);
+  background: var(--mac-white);
+  color: var(--mac-black);
+  outline: none;
+  transition:
+    border-color var(--mac-transition),
+    box-shadow var(--mac-transition);
+}
+
+.mac-field:focus {
+  border-color: var(--mac-black);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+textarea.mac-field {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* ---------- Footer ---------- */
+.mac-footer {
+  padding-block: 72px 32px;
+  background: var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-footer a {
+  color: #D7D7D7;
+  transition: color var(--mac-transition);
+}
+
+.mac-footer a:hover {
+  color: var(--mac-white);
+}
+
+.mac-footer__bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  color: #999999;
+  font-size: 0.85rem;
+}
+
+/* ---------- Optional Apex MD / MAC Boost Section ---------- */
+.mac-boost {
+  background:
+    radial-gradient(circle at top right, rgba(215,25,32,0.12), transparent 34%),
+    var(--mac-black);
+  color: var(--mac-white);
+}
+
+.mac-boost-card {
+  height: 100%;
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--mac-radius-md);
+  background: rgba(255,255,255,0.055);
+  backdrop-filter: blur(8px);
+}
+
+.mac-boost-card h3 {
+  margin-bottom: 12px;
+}
+
+.mac-boost-card p {
+  color: #C9C9C9;
+}
+
+/* ---------- Utility Classes ---------- */
+.mac-text-center { text-align: center; }
+.mac-text-white { color: var(--mac-white); }
+.mac-text-red { color: var(--mac-red); }
+.mac-bg-black { background: var(--mac-black); }
+.mac-bg-soft { background: var(--mac-gray-100); }
+
+.mac-max-copy {
+  max-width: 760px;
+}
+
+.mac-mx-auto {
+  margin-inline: auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .mac-grid--4,
+  .mac-grid--3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mac-split {
+    grid-template-columns: 1fr;
+  }
+
+  .mac-split__media {
+    min-height: 420px;
+  }
+
+  .mac-nav__links {
+    display: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .mac-container {
+    padding-inline: 20px;
+  }
+
+  .mac-grid--4,
+  .mac-grid--3,
+  .mac-grid--2 {
+    grid-template-columns: 1fr;
+  }
+
+  h1,
+  .mac-h1 {
+    font-size: clamp(3rem, 17vw, 5rem);
+  }
+
+  h2,
+  .mac-h2 {
+    font-size: clamp(2.25rem, 12vw, 3.7rem);
+  }
+
+  .mac-hero {
+    min-height: 70vh;
+  }
+
+  .mac-hero__content {
+    padding-bottom: 54px;
+  }
+
+  .mac-card,
+  .mac-tile,
+  .mac-cta,
+  .mac-split__media {
+    border-radius: 16px;
+  }
+
+  .mac-tile {
+    min-height: 390px;
+  }
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* ---------- Additions for the MAC Boost site ---------- */
+@keyframes dfMarquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@keyframes dfFade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes dfRise { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: none } }
+
+.mac-offerbar {
+  display: flex; align-items: center; height: 40px; overflow: hidden;
+  background: var(--mac-red); color: var(--mac-white);
+}
+.mac-offerbar__track { display: flex; width: 200%; animation: dfMarquee 30s linear infinite; }
+.mac-offerbar__set {
+  display: flex; gap: 56px; width: 50%; flex: none; padding-left: 20px; align-items: center;
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap;
+}
+
+.mac-btn--sm { min-height: 44px; padding: 10px 20px; font-size: 0.74rem; }
+.mac-btn--white { border-color: var(--mac-white); background: var(--mac-white); color: var(--mac-black); }
+.mac-btn--white:hover { border-color: var(--mac-red); background: var(--mac-red); color: var(--mac-white); }
+
+.mac-menu {
+  position: absolute; top: 100%; left: -14px; padding-top: 18px; z-index: 40;
+  animation: dfFade .14s ease;
+}
+.mac-menu__panel {
+  width: 380px; overflow: hidden; background: var(--mac-white);
+  border: 1px solid var(--mac-gray-200); border-radius: var(--mac-radius-md); box-shadow: var(--mac-shadow);
+}
+.mac-menu__item {
+  display: flex; justify-content: space-between; gap: 16px; align-items: center;
+  padding: 14px 20px; border-bottom: 1px solid var(--mac-gray-200);
+  font-size: 0.95rem; font-weight: 700; transition: background var(--mac-transition), color var(--mac-transition);
+}
+.mac-menu__item:last-child { border-bottom: 0; }
+.mac-menu__item:hover { background: var(--mac-gray-100); color: var(--mac-red); }
+.mac-menu__price { font-size: 0.76rem; font-weight: 700; color: var(--mac-gray-500); }
+
+.mac-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0; }
+.mac-stat { padding: 22px 26px 22px 0; }
+.mac-stat + .mac-stat { padding-left: 26px; border-left: 1px solid rgba(255,255,255,0.16); }
+.mac-stat__num { font-family: var(--mac-font-display); font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -0.02em; }
+.mac-stat__label { margin-top: 6px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mac-gray-500); }
+.mac-stats--light .mac-stat + .mac-stat { border-left-color: var(--mac-gray-300); }
+
+.mac-price { border: 1px solid var(--mac-gray-200); border-radius: var(--mac-radius-md); overflow: hidden; background: var(--mac-white); box-shadow: var(--mac-shadow); }
+.mac-price__head {
+  padding: 20px 24px; background: var(--mac-red); color: var(--mac-white);
+  border-radius: var(--mac-radius-md) var(--mac-radius-md) 0 0;
+}
+.mac-price__body {
+  padding: 26px 24px; background: var(--mac-white);
+  border: 1px solid var(--mac-gray-200); border-top: 0;
+  border-radius: 0 0 var(--mac-radius-md) var(--mac-radius-md);
+}
+.mac-price .mac-price__head, .mac-price .mac-price__body { border-radius: 0; border-top: 0; }
+.mac-price__amount { font-family: var(--mac-font-display); font-size: 3.4rem; font-weight: 900; line-height: 1; text-transform: uppercase; letter-spacing: -0.03em; }
+.mac-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.mac-list li { display: flex; gap: 10px; font-size: 0.95rem; }
+.mac-list li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 8px; border-radius: 50%; background: var(--mac-red); }
+
+.mac-faq { border-top: 1px solid var(--mac-gray-300); }
+.mac-faq details { border-bottom: 1px solid var(--mac-gray-300); }
+.mac-faq summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; cursor: pointer; font-size: 1.1rem; font-weight: 700; list-style: none; }
+.mac-faq summary::-webkit-details-marker { display: none; }
+.mac-faq summary span:last-child { flex: none; color: var(--mac-red); font-size: 1.5rem; line-height: 1; transition: transform var(--mac-transition); }
+.mac-faq details[open] summary span:last-child { transform: rotate(45deg); }
+.mac-faq p { max-width: 62ch; margin: 0 0 24px; color: var(--mac-gray-700); }
+
+.mac-quiz__backdrop { position: fixed; inset: 0; z-index: 2000; display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; background: rgba(11,11,11,0.82); animation: dfFade .18s ease; }
+.mac-quiz { width: min(760px, 100%); background: var(--mac-white); border-radius: var(--mac-radius-lg); overflow: hidden; animation: dfRise .24s cubic-bezier(.2,.7,.3,1); }
+.mac-quiz__head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 28px; background: var(--mac-black); color: var(--mac-white); }
+.mac-quiz__body { padding: 32px 28px 30px; }
+.mac-quiz__opt { display: flex; align-items: center; gap: 18px; width: 100%; padding: 16px 14px; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--mac-gray-200); border-radius: var(--mac-radius-sm); cursor: pointer; transition: background var(--mac-transition), padding-left var(--mac-transition); }
+.mac-quiz__opt:hover { background: var(--mac-gray-100); padding-left: 22px; }
+.mac-quiz__opt b { flex: 1; font-family: var(--mac-font-body); font-size: 1.05rem; font-weight: 700; }
+.mac-quiz__num { width: 26px; flex: none; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; color: var(--mac-red); }
+
+.mac-float { position: fixed; left: 0; right: 0; bottom: 0; z-index: 900; display: none; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 16px 20px; background: var(--mac-black); color: var(--mac-white); border: 0; border-top: 3px solid var(--mac-red); font-weight: 800; font-size: 0.9rem; text-align: left; cursor: pointer; }
+
+.mac-product { display: flex; align-items: center; justify-content: center; padding: 26px; background: var(--mac-gray-100); border-radius: var(--mac-radius-md); }
+.mac-product img { max-height: 220px; width: auto; }
+
+.mac-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.mac-compare__col { padding: 30px; border: 1px solid var(--mac-gray-200); border-radius: var(--mac-radius-md); }
+.mac-compare__col--win { background: var(--mac-black); color: var(--mac-white); border-color: var(--mac-black); }
+
+/* ---------- Press strip ----------
+   Publisher marks stay MONOCHROME on purpose. Their real brand colours would
+   read as endorsement rather than "as featured in", and five competing house
+   palettes in one row looks like a link farm. The lift comes from size,
+   centring, a red kicker and a hover, not from colour.
+   Heights are set per mark: NYT is a 7.4:1 wordmark and NBC/AP/ABC are 1:1
+   roundels, so one shared height would make the roundels tower over the
+   wordmarks. These are matched by eye, not by number. */
+.mac-press { text-align: center; }
+.mac-press__kicker {
+  margin: 0 0 26px;
+  font-family: var(--mac-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mac-red);
+}
+.mac-press__row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 26px clamp(30px, 5vw, 64px);
+}
+.mac-press__row li { display: flex; align-items: center; flex: 0 0 auto; }
+/* Same trap as the header lockup: as flex items these marks shrink, and the
+   global `img{max-width:100%}` then resolves against a 0-width parent and
+   collapses them to nothing while their heights still apply. */
+.mac-press__row img { flex: 0 0 auto; max-width: none; }
+.mac-press img {
+  width: auto;
+  opacity: .62;
+  filter: grayscale(1);
+  transition: opacity var(--mac-transition), transform var(--mac-transition), filter var(--mac-transition);
+}
+.mac-press__nyt    { height: 34px; }
+.mac-press__forbes { height: 30px; }
+.mac-press__nbc    { height: 42px; }
+.mac-press__ap     { height: 36px; }
+.mac-press__abc    { height: 40px; }
+.mac-press img:hover { opacity: 1; transform: translateY(-2px); }
+
+/* Entrance: staggered, and armed by JS so a script failure never hides logos. */
+.mac-press.is-armed .mac-press__row li { opacity: 0; transform: translateY(10px); }
+.mac-press__row li { transition: opacity .5s ease, transform .5s cubic-bezier(.22,.8,.3,1); }
+.mac-press.is-in .mac-press__row li { opacity: 1; transform: none; }
+.mac-press.is-armed .mac-press__row li:nth-child(1) { transition-delay: 0ms }
+.mac-press.is-armed .mac-press__row li:nth-child(2) { transition-delay: 70ms }
+.mac-press.is-armed .mac-press__row li:nth-child(3) { transition-delay: 140ms }
+.mac-press.is-armed .mac-press__row li:nth-child(4) { transition-delay: 210ms }
+.mac-press.is-armed .mac-press__row li:nth-child(5) { transition-delay: 280ms }
+
+@media (max-width: 560px) {
+  .mac-press__row { gap: 22px 26px; }
+  .mac-press__nyt { height: 26px } .mac-press__forbes { height: 23px }
+  .mac-press__nbc { height: 32px } .mac-press__ap { height: 28px } .mac-press__abc { height: 30px }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mac-press.is-armed .mac-press__row li { opacity: 1; transform: none; transition: none; }
+  .mac-press img:hover { transform: none; }
+}
+.mac-section--dark .mac-press img { opacity: .75; filter: grayscale(1) invert(1); }
+
+/* form groups (used by the contact form) */
+.mac-field-group > label {
+  display: block; margin-bottom: 7px;
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mac-gray-700);
+}
+.mac-field-group textarea.mac-field { min-height: 140px; }
+.input { width: 100%; }
+.field > label { display: block; margin-bottom: 6px; font-size: 0.78rem; color: var(--mac-gray-700); }
+
+/* the persistent CTA bar sits over the footer below 1040px — reserve its space on the flow element */
+@media (max-width: 1040px) {
+  .mac-footer { padding-bottom: 112px; }
+}
+
+
+/* ---------- Hero framed around the logo burned into the video ----------
+   The tour footage carries the MAC mark in the bottom-centre, so the
+   copy stays in a left column, the scrim is weighted left instead of down,
+   and the bottom-centre band is kept clear. */
+.mac-hero--framed { min-height: 88vh; align-items: center; }
+
+.mac-hero--framed::after {
+  background: linear-gradient(96deg,
+    rgba(0,0,0,0.90) 0%,
+    rgba(0,0,0,0.66) 40%,
+    rgba(0,0,0,0.22) 70%,
+    rgba(0,0,0,0.06) 100%);
+}
+
+.mac-hero--framed .mac-hero__content {
+  padding-block: clamp(90px, 10vw, 150px) clamp(130px, 15vw, 210px);
+}
+/* The hero still is a spin class: the lead rider's face occupies roughly
+   50%-72% of the frame width, upper half. The headline is held to the left
+   ~46% so it never crosses her, and its size is capped lower than the global
+   h1 clamp so a narrow column does not turn into six lines. The chip row and
+   buttons sit lower, below her face, so they are free to run wider -- which
+   is what keeps the chips on a single line. */
+.mac-hero--framed .mac-hero__content h1 {
+  max-width: min(15ch, 46%);
+  font-size: clamp(2.9rem, 5.2vw, 5.1rem);
+}
+.mac-hero--framed .mac-hero__content > p { max-width: min(46ch, 45%); }
+.mac-hero--framed .mac-hero__content > div { max-width: none; }
+
+/* Keep the hero's benefit chips on one row. */
+.mac-hero--framed .mac-feature-strip {
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: max-content;
+  max-width: 100%;
+}
+.mac-hero--framed .mac-feature-strip .mac-chip {
+  white-space: nowrap;
+  padding: 9px 14px;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 1180px) {
+  .mac-hero--framed .mac-feature-strip .mac-chip { font-size: 0.64rem; padding: 8px 11px; letter-spacing: 0.04em; }
+}
+
+@media (max-width: 900px) {
+  .mac-hero--framed::after {
+    background: linear-gradient(180deg,
+      rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.70) 45%, rgba(0,0,0,0.88) 100%);
+  }
+  .mac-hero--framed .mac-hero__content h1,
+  .mac-hero--framed .mac-hero__content > p,
+  .mac-hero--framed .mac-hero__content > div { max-width: none; }
+  .mac-hero--framed .mac-hero__content h1 { font-size: clamp(2.6rem, 9vw, 4rem); }
+  /* one row is a desktop luxury; on a phone let them wrap */
+  .mac-hero--framed .mac-feature-strip { flex-wrap: wrap; width: auto; }
+  .mac-hero--framed .mac-feature-strip .mac-chip { font-size: 0.66rem; }
+  .mac-hero--framed .mac-hero__content { padding-bottom: clamp(150px, 28vw, 230px); }
+}
+
+/* ---------- Co-brand lockup: The M.A.C. · powered by · Apex MD ----------
+   The Apex MD PNG carries ~29% transparent padding, so its box height is
+   set ~1.15x the MAC mark to land at a matching optical height.
+   Sizes step down with the viewport: at full size the lockup is ~368px,
+   which overflows the header bar between the container max-width and the
+   1040px burger breakpoint, and crowds the burger on a phone. */
+/* Do NOT let the lockup flex-shrink. If it collapses toward 0 width, the
+   global `img { max-width: 100% }` resolves against that 0 and clamps BOTH
+   marks to zero width while their heights still apply -- an invisible logo.
+   The marks are stepped down by the media queries below instead. */
+.mac-lockup { flex: 0 0 auto; }
+.mac-lockup > img,
+.mac-lockup__by { flex: 0 0 auto; max-width: none; }
+.mac-lockup__mac { height: 28px; width: auto; }
+.mac-lockup__apex   { height: 32px; width: auto; }
+
+@media (max-width: 1200px) {
+  .mac-lockup { gap: 10px; }
+  .mac-lockup__mac { height: 24px; }
+  .mac-lockup__apex   { height: 27px; }
+}
+@media (max-width: 1040px) {
+  .mac-lockup { gap: 9px; }
+  .mac-lockup__mac { height: 22px; }
+  .mac-lockup__apex   { height: 25px; }
+  .mac-lockup__by     { font-size: 7.5px; letter-spacing: 0.1em; }
+}
+@media (max-width: 420px) {
+  .mac-lockup { gap: 7px; }
+  .mac-lockup__mac { height: 18px; }
+  .mac-lockup__apex   { height: 21px; }
+  .mac-lockup__by     { font-size: 7px; letter-spacing: 0.06em; }
+}
+
+/* ---------- Programs dropdown ----------
+   The panel is hidden with an inline display:none so it cannot flash before
+   mac-app.js runs; opening clears that inline value and this rule applies. */
+.mac-navmenu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: -18px;
+  min-width: 232px;
+  padding: 10px;
+  background: var(--mac-white);
+  border: 1px solid var(--mac-gray-200);
+  border-radius: var(--mac-radius-sm);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.13);
+  z-index: 1200;
+}
+/* The panel sits 12px below the button. That gap is neither the button nor the
+   panel, so travelling across it fired mouseleave and shut the menu before the
+   pointer arrived. This invisible bridge spans the gap and keeps the hover
+   surface continuous. */
+.mac-navmenu::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+.mac-navmenu a {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--mac-black);
+  border-radius: 7px;
+  white-space: nowrap;
+  transition: background var(--mac-transition), color var(--mac-transition);
+}
+.mac-navmenu a:hover,
+.mac-navmenu a:focus-visible { background: var(--mac-gray-100); color: var(--mac-red); }
+.mac-navmenu a[aria-current="page"] { color: var(--mac-red); }
+
+
+/* ---------- Ghost button ----------
+   .mac-btn--ghost is used on all 12 pages (the quiz's "Back" control) but was
+   never defined, so it inherited .mac-btn's white text and rendered
+   white-on-white inside the light quiz modal: present, clickable, invisible.
+   It is a tertiary control on a LIGHT ground, so it gets ink, not paper. */
+/* The base rule is `.mac-btn, button.mac-btn`; that second selector is
+   (0,1,1) and outranks a bare `.mac-btn--ghost` (0,1,0) on a <button>, so the
+   modifier has to match it or the dark fill wins. */
+.mac-btn--ghost,
+button.mac-btn--ghost {
+  background: none;
+  border: 2px solid transparent;
+  color: var(--mac-gray-700);
+  text-decoration: none;
+  gap: 8px;
+}
+.mac-btn--ghost:hover,
+.mac-btn--ghost:focus-visible,
+button.mac-btn--ghost:hover,
+button.mac-btn--ghost:focus-visible {
+  color: var(--mac-red);
+  background: var(--mac-gray-100);
+  border-color: var(--mac-gray-200);
+}

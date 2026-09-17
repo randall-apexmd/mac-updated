@@ -1,0 +1,424 @@
+/* ============================================================
+   mac.apexmd.com — site layer
+   Design tokens and page-frame rules only. All component styling
+   lives inline on the markup, exactly as authored in the design,
+   so nothing here restyles the page.
+   ============================================================ */
+
+:root {
+  --color-accent: #C50806;
+  --color-accent-100: #FDE8E6;
+  --color-accent-200: #FBD5D1;
+  --color-accent-600: #9E0604;
+  --color-accent-700: #7E0503;
+  --color-accent-800: #5A0402;
+  --color-bg: #F5F2ED;
+  --color-surface: #E9E7E1;
+  --color-text: #101010;
+  --color-divider: color-mix(in srgb, #101010 40%, transparent);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: Archivo, system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-wrap: pretty;
+  overflow-x: hidden;             /* no horizontal scrolling, ever */
+}
+
+img { display: block; max-width: 100%; height: auto; }
+/* height:auto pairs with the intrinsic width/height attributes stamped by
+   _build/optimize.py: the attributes give the browser an aspect ratio to
+   reserve space with, and height:auto stops max-width from distorting it.
+   Images carrying an explicit inline height are unaffected — inline wins. */
+[hidden] { display: none !important; }
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
+details[open] .faq-plus { transform: rotate(45deg); }
+
+a { color: var(--color-accent); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-600); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* — the two page renderings authored in the design — */
+.page { position: relative; background: var(--color-bg); }
+.page--desktop { max-width: 1440px; margin: 0 auto; }
+.page--mobile  { max-width: 390px;  margin: 0 auto; display: none; }
+
+/* Tablet and below get the mobile rendering (the design's own
+   small-screen layout) rather than a squeezed desktop grid.
+
+   It is authored at 390px. Letting it stretch to the full 1023px of a
+   tablet pushed body copy to ~130 characters a line and upscaled several
+   images past their intrinsic size, so it is capped and centred: phones
+   are unaffected (their viewport is below the cap) and tablets get a
+   comfortable measure instead of a stretched phone layout. */
+@media (max-width: 1023px) {
+  .page--desktop { display: none; }
+  .page--mobile  { display: block; max-width: 600px; margin: 0 auto; }
+}
+
+/* Between 1024 and 1440 the desktop rendering flexes: its grids are
+   all minmax(0,1fr) based, so only the outer gutters need to shrink. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .page--desktop [style*="padding:76px 64px"],
+  .page--desktop [style*="padding:72px 64px"],
+  .page--desktop [style*="padding:80px 64px"],
+  .page--desktop [style*="padding:68px 64px"],
+  .page--desktop [style*="padding:64px 64px"],
+  .page--desktop [style*="padding:56px 64px"],
+  .page--desktop [style*="padding:16px 64px"] { padding-left: 40px !important; padding-right: 40px !important; }
+}
+
+/* Minimum reading size on small screens.
+   The mobile rendering sets 11–11.5px on its disclaimer and legal paragraphs.
+   That is fine for the uppercase tracking labels around them, but this is
+   prose a member has to actually read — prescribing conditions, the EōS
+   marketing disclosure, the compounding notice. Raised to 12.5px for
+   <p> only, so eyebrows, badges and the "Powered by" lockup label keep
+   their intended size. Scoped to the mobile rendering; desktop untouched. */
+@media (max-width: 1023px) {
+  .page--mobile p[style*="font-size:11px"],
+  .page--mobile p[style*="font-size:11.5px"] {
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* — wide screens: full-bleed backgrounds, contained content —
+   The design is authored at 1440px. Simply centring it left a light gutter
+   down both sides of any wider monitor, which reads as the page being
+   cropped rather than deliberately contained. Instead the page fills the
+   viewport and each section's own horizontal padding grows to keep the
+   content column at 1440px — so dark sections and photography run edge to
+   edge while line lengths stay exactly as designed.
+   Overlays are excluded: they are position:fixed and set their own box. */
+@media (min-width: 1441px) {
+  .page--desktop { max-width: 100%; }
+  .page--desktop > div:not(.overlay) {
+    padding-left:  calc((100vw - 1440px) / 2 + 64px) !important;
+    padding-right: calc((100vw - 1440px) / 2 + 64px) !important;
+  }
+}
+
+/* — header: the logo lockup must never be overlapped by the nav —
+   The bar is a flex row with nowrap text. Once the nav no longer fits, the
+   items shrink but their text cannot wrap, so the nav ran back over the
+   "POWERED BY Apex MD" lockup. Pinning the lockup and letting the nav be
+   the thing that gives keeps them apart at every width. */
+.page--desktop > div:first-child > div:first-child { flex: none; }
+.page--desktop > div:first-child > div:nth-child(2) { min-width: 0; flex-shrink: 1; }
+
+/* — overlays (assessment modal, mobile club sheet) — */
+.overlay { position: fixed; inset: 0; z-index: 60; }
+
+
+/* — scroll motion (see assets/js/motion.js) —
+   Nothing here applies until motion.js adds .js-motion to <html>, so a
+   JS failure or a reduced-motion preference leaves a plain static page. */
+.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  will-change: opacity, transform;
+  transition: opacity .62s cubic-bezier(.22,.61,.36,1),
+              transform .62s cubic-bezier(.22,.61,.36,1);
+}
+.js-motion [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* large imagery settles from a slight over-scale as its block arrives */
+.js-motion [data-reveal] img[data-settle] {
+  transform: scale(1.035);
+  transition: transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.js-motion [data-reveal].is-in img[data-settle] { transform: none; }
+
+/* the reveal transform would otherwise fight position:sticky */
+.js-motion [data-reveal][style*="position:sticky"] { opacity: 1; transform: none; }
+
+/* — reduced motion — */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+  .js-motion [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .js-motion [data-reveal] img[data-settle] { transform: none !important; }
+}
+
+/* — print — */
+@media print {
+  .js-motion [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .page--mobile { display: none !important; }
+  .overlay { display: none !important; }
+}
+
+/* ============================================================
+   Dynamic layer (see assets/js/dynamic.js)
+   Everything below is additive and hidden until the script opts
+   an element in, so the static page is unaffected if JS fails.
+   ============================================================ */
+
+/* — 1. condensed sticky header — */
+.eos-stickybar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: rgba(255,255,255,.94);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 2px solid var(--color-divider);
+  transform: translateY(-100%);
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+}
+.eos-stickybar.is-shown { transform: none; }
+.eos-stickybar__inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; padding: 10px 64px;
+}
+.eos-stickybar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.eos-stickybar__logo img:first-child { height: 20px; width: auto; }
+.eos-stickybar__logo img:last-child  { height: 11px; width: auto; }
+.eos-stickybar__logo span {
+  font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
+  color: #6B6B6B; white-space: nowrap;
+  border-left: 1px solid var(--color-divider); padding-left: 12px;
+}
+.eos-stickybar__cta { min-height: 36px; padding: 0 16px; font-size: 13.5px; }
+@media (min-width: 1441px) {
+  .eos-stickybar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
+                          padding-right: calc((100vw - 1440px) / 2 + 64px); max-width: 100%; }
+}
+@media (max-width: 1023px) {
+  .eos-stickybar__inner { padding: 8px 18px; }
+  .eos-stickybar__logo span { display: none; }
+}
+
+/* — 2. timeline progress rail — */
+.eos-rail { height: 3px; background: var(--color-divider); margin: 0 0 2px; overflow: hidden; }
+.eos-rail i { display: block; height: 100%; width: 0;
+              background: var(--color-accent); transition: width .12s linear; }
+.page--desktop .eos-rail i, .page--mobile .eos-rail i { background: #FF4A38; }
+
+/* — 3. sticky price bar — */
+.eos-pricebar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 49;
+  background: rgba(13,16,19,.96);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-top: 1px solid #242424;
+  transform: translateY(100%);
+  transition: transform .32s cubic-bezier(.22,.61,.36,1);
+}
+.eos-pricebar.is-shown { transform: none; }
+.eos-pricebar__inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; gap: 18px; padding: 12px 64px;
+}
+.eos-pricebar__label { font-size: 14px; font-weight: 700; color: #F5F2ED;
+                       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eos-pricebar__price { font-size: 22px; font-weight: 800; letter-spacing: -.02em;
+                       color: #FF4A38; margin-left: auto; white-space: nowrap; }
+.eos-pricebar .btn { min-height: 40px; padding: 0 18px; font-size: 14px; white-space: nowrap; }
+@media (min-width: 1441px) {
+  .eos-pricebar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
+                         padding-right: calc((100vw - 1440px) / 2 + 64px); max-width: 100%; }
+}
+@media (max-width: 1023px) {
+  .eos-pricebar__inner { padding: 10px 18px; gap: 12px; }
+  .eos-pricebar__label { display: none; }
+}
+
+/* — 4. directional entry — */
+.js-motion [data-reveal] .eos-from-side  { transform: translateX(26px); opacity: 0;
+  transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+.js-motion [data-reveal] .eos-from-below { transform: translateY(20px); opacity: 0;
+  transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
+.js-motion [data-reveal].is-in .eos-from-side,
+.js-motion [data-reveal].is-in .eos-from-below { transform: none; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eos-stickybar, .eos-pricebar { transition: none; }
+  .js-motion [data-reveal] .eos-from-side,
+  .js-motion [data-reveal] .eos-from-below { opacity: 1 !important; transform: none !important; }
+}
+@media print { .eos-stickybar, .eos-pricebar { display: none !important; } }
+
+  .hp-offerbar{
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;
+    background:#C50806;color:#fff;padding:10px 20px;text-align:center;
+    font-family:'Archivo',system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.01em}
+  .hp-offerbar strong{font-weight:800}
+  .hp-offerbar__sep{opacity:.55}
+  @media (max-width:720px){ .hp-offerbar{font-size:11.5px;padding:9px 14px;gap:4px 10px} }
+
+
+/* — homepage hero: the copy stays left of the runners —
+   The (min-width:1441px) rule above pushes every direct child of the page
+   into the centred 1440 column, which on a 2000px screen starts the hero
+   copy at 408px — straight on top of the two runners. The runners sit at
+   42-62% of the photo and cannot be moved with object-position once the
+   image is wide enough to stop being cropped horizontally, so the copy is
+   what has to move. Pin the full-bleed hero to a plain 64px left gutter. */
+@media (min-width: 1441px) {
+  .page--desktop > div.hp-hero {
+    padding-left:  64px !important;
+    padding-right: 0    !important;
+  }
+}
+
+/* — ...and on very wide screens it comes back off the left edge —
+   Past ~1900px the photo stops being cropped, so the woman sits at a fixed
+   fraction of the viewport (~45%) and just keeps moving right. Let the left
+   gutter grow with her instead of pinning the copy to the edge, and hold the
+   copy narrow enough that the product row stops just short of her. */
+@media (min-width: 1900px) {
+  .page--desktop > div.hp-hero {
+    padding-left: max(64px, calc((100vw - 1900px) * 0.4 + 64px)) !important;
+  }
+  .page--desktop > div.hp-hero > div:last-child { max-width: 808px !important; }
+}
+
+
+/* =========================================================
+   2-minute assessment — the quiz
+   One question on screen at a time, on a dark panel with the hero
+   photograph blurred behind it. Only the progress meter animates; the
+   steps swap instantly so answering never waits on a transition.
+   ========================================================= */
+.aq-scrim {
+  position: absolute; inset: 0; z-index: 50;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 64px 24px;
+  background: rgba(8, 10, 12, .78);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  overflow-y: auto;
+}
+.aq-panel {
+  position: relative; overflow: hidden;
+  width: min(960px, 100%);
+  background: #0D0F11;
+  border: 1px solid rgba(255, 255, 255, .13);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, .6);
+}
+/* the hero photo, blurred back until it is texture rather than subject */
+.aq-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 58% 38%;
+  filter: blur(24px) brightness(.66) saturate(.9);
+  transform: scale(1.14);           /* hides the soft edge the blur leaves */
+  opacity: .8; pointer-events: none;
+}
+.aq-veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(158deg, rgba(13, 15, 17, .46) 0%, rgba(13, 15, 17, .8) 56%, rgba(13, 15, 17, .95) 100%);
+}
+.aq-head, .aq-meter, .aq-body, .aq-foot { position: relative; z-index: 1; }
+
+.aq-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+  padding: 26px 36px 20px;
+}
+.aq-eyebrow {
+  display: block; margin-bottom: 7px;
+  font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  color: #FF4A38;
+}
+.aq-step-of { font-size: 13px; letter-spacing: .04em; color: #8C8C8C; }
+.aq-close {
+  font-size: 26px; line-height: 1; padding: 4px 10px; margin: -4px -10px 0 0;
+  color: #8C8C8C; text-decoration: none; transition: color .15s;
+}
+.aq-close:hover { color: #F5F2ED; }
+
+.aq-meter { height: 3px; margin: 0 36px; background: rgba(255, 255, 255, .13); }
+.aq-meter i {
+  display: block; width: 0; height: 100%; background: #FF4A38;
+  transition: width .45s cubic-bezier(.4, 0, .2, 1);
+}
+
+.aq-body { padding: 34px 36px 8px; min-height: 384px; }   /* holds the panel steady between steps */
+.aq-count {
+  display: block; margin-bottom: 14px;
+  font-family: var(--mac-font-mono, Menlo, monospace);
+  font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #6B6B6B;
+}
+.aq-q {
+  margin: 0 0 26px;
+  font-size: 38px; font-weight: 800; letter-spacing: -.03em; line-height: 1.06;
+  color: #F5F2ED; max-width: 20ch;
+}
+
+.aq-opts { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.aq-opts--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.aq-opts--5 > .aq-opt:last-child { grid-column: span 2; }
+.aq-opt {
+  display: flex; align-items: center; gap: 13px;
+  padding: 18px 20px; text-align: left; cursor: pointer;
+  font: inherit; font-size: 16px; font-weight: 600; color: #F5F2ED;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .15);
+  transition: background .16s, border-color .16s;
+}
+.aq-opt:hover { background: rgba(255, 255, 255, .09); border-color: rgba(255, 255, 255, .34); }
+.aq-opt.is-on { background: rgba(255, 59, 74, .15); border-color: #FF4A38; }
+.aq-tick {
+  flex: 0 0 auto; position: relative; width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .34); transition: background .16s, border-color .16s;
+}
+.aq-opt.is-on .aq-tick { background: #FF4A38; border-color: #FF4A38; }
+.aq-opt.is-on .aq-tick::after {
+  content: ""; position: absolute; left: 5px; top: 2px;
+  width: 4px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0;
+  transform: rotate(42deg);
+}
+
+/* — the payoff: a protocol card built out of their three answers — */
+.aq-card { border-left: 3px solid #FF4A38; padding-left: 26px; }
+.aq-card-prog {
+  display: block; margin-bottom: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #FF4A38;
+}
+.aq-card-goal {
+  margin: 0 0 14px;
+  font-size: 46px; font-weight: 800; letter-spacing: -.035em; line-height: 1; color: #F5F2ED;
+}
+.aq-card-copy { margin: 0 0 26px; font-size: 16px; line-height: 1.6; color: #D9D9D9; max-width: 52ch; }
+.aq-matched {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0;
+  margin: 0 0 28px; border-top: 1px solid rgba(255, 255, 255, .15);
+}
+.aq-matched > div { padding: 14px 18px 0 0; }
+.aq-matched > div + div { padding-left: 18px; border-left: 1px solid rgba(255, 255, 255, .15); }
+.aq-matched dt {
+  font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: #6B6B6B; margin-bottom: 6px;
+}
+.aq-matched dd { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.3; color: #F5F2ED; }
+.aq-cta { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.aq-go { min-height: 54px; font-size: 16px; padding: 0 26px; }
+.aq-more { font-size: 14.5px; font-weight: 700; color: #FF4A38; text-decoration: none; }
+
+.aq-foot {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 26px;
+  padding: 18px 36px 26px;
+}
+.aq-back { font-size: 13.5px; font-weight: 600; color: #8C8C8C; text-decoration: none; white-space: nowrap; }
+.aq-back:hover { color: #F5F2ED; }
+.aq-legal { margin: 0 0 0 auto; max-width: 62ch; font-size: 12px; line-height: 1.55; color: #6B6B6B; }
+
+@media (max-width: 760px) {
+  .aq-scrim { padding: 0; }
+  .aq-panel { width: 100%; min-height: 100%; border: 0; }
+  .aq-head, .aq-body, .aq-foot { padding-left: 20px; padding-right: 20px; }
+  .aq-meter { margin: 0 20px; }
+  .aq-q { font-size: 28px; }
+  .aq-opts, .aq-opts--3 { grid-template-columns: 1fr; }
+  .aq-opts--5 > .aq-opt:last-child { grid-column: auto; }
+  .aq-card-goal { font-size: 34px; }
+  .aq-matched { grid-template-columns: 1fr; }
+  .aq-matched > div + div { padding-left: 0; border-left: 0; border-top: 1px solid rgba(255, 255, 255, .15); }
+  .aq-foot { flex-direction: column; align-items: flex-start; }
+  .aq-legal { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aq-meter i { transition: none; }
+}
