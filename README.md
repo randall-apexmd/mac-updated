@@ -23,10 +23,10 @@ section architecture, quiz, offer bar and page set, rebranded to The M.A.C.
 - **Intake:** `https://formmac.apexmd.com/?categoryId=<cat>` —
   `weight-loss | microdosing | trt | hrt | longevity | bloodwork`.
 - **Affiliate:** iDevAffiliate id **208** (`api/track.js`), fired by `affiliate.js`.
-- **Offers:** GLP-1 is $100 off month one through member pricing (no code —
-  mac.apexmd.com already shows $199 month one vs $299). Peptides, microdosing
-  and NAD+ are $50 off month one with code **MAC50** (`MACFITNESS` also valid).
-  MAC50 is for non-GLP-1, non-TRT/HRT programs only.
+- **Offers:** every GLP-1 program (weight loss and microdosing) is $100 off
+  month one with code **MAC100**. Peptides, sermorelin and NAD+ are $50 off
+  month one with code **MAC50** (`MACFITNESS` also valid). TRT/HRT and
+  bloodwork carry member pricing, no code.
 - **Pricing** follows what mac.apexmd.com sells today: TRT $99 one-time consult
   then from $199/mo; women's HRT $299 panel + consult then from $199/mo; NAD+
   $199 month one then $249/mo; sermorelin $249/mo; bloodwork $99 / $129 / $299.
