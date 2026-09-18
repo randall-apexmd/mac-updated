@@ -1,5 +1,5 @@
 /* ============================================================
-   eos.apexmd.com — motion layer
+   mac.apexmd.com — motion layer
    Scroll-triggered entrances, in the restrained style of a
    product marketing page: a short rise + fade as a block enters,
    a light stagger across siblings, a slow settle on large imagery

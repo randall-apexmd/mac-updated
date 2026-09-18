@@ -3,21 +3,21 @@
 (function () {
   'use strict';
 
-  var FORM = 'https://formmac.apexmd.com?categoryId=';
+  var FORM = 'https://formmac.apexmd.com/?categoryId=';
   var PROGRAMS = {
     glp1:      { name:'GLP-1 Weight Loss',        price:'$199 first month',        cat:'weight-loss',        page:'weight-loss.html',        labs:'Quarterly, included',
       why:'Physician-guided semaglutide or tirzepatide with titration tuned to your labs, so you lose fat instead of the muscle you built at The M.A.C.' },
-    micro:     { name:'GLP-1 Microdosing',        price:'$249.99 / month',         cat:'glp-1-microdosing',  page:'glp-1-microdosing.html',  labs:'Quarterly, included',
+    micro:     { name:'GLP-1 Microdosing',        price:'$249.99 / month',         cat:'microdosing',  page:'glp-1-microdosing.html',  labs:'Quarterly, included',
       why:'A low, steady dose aimed at inflammation, appetite signalling and long-term metabolic health rather than the fastest possible drop on the scale.' },
-    nad:       { name:'NAD+',                     price:'$249 / month',            cat:'nad',                page:'nad.html',                labs:'Not required',
+    nad:       { name:'NAD+',                     price:'$249 / month',            cat:'longevity',                page:'nad.html',                labs:'Not required',
       why:'A 2,000mg protocol that replaces the NAD your cells stop making. Used for daytime energy, mental clarity and recovery between hard sessions.' },
-    sermorelin:{ name:'Sermorelin',               price:'$249.99 / month',         cat:'sermorelin',         page:'sermorelin.html',         labs:'Not required',
+    sermorelin:{ name:'Sermorelin',               price:'$249.99 / month',         cat:'longevity',         page:'sermorelin.html',         labs:'Not required',
       why:'Stimulates your own growth hormone production instead of replacing it. Deeper sleep, better muscle tone, faster recovery.' },
-    trt:       { name:'Testosterone Replacement', price:'From $199 / month',       cat:'testosterone',       page:'testosterone.html',       labs:'Baseline panel first',
+    trt:       { name:'Testosterone Replacement', price:'From $199 / month',       cat:'trt',       page:'testosterone.html',       labs:'Baseline panel first',
       why:'Every TRT protocol starts with a comprehensive panel, then a physician brings your levels back into optimal range.' },
     hrt:       { name:'Hormone Replacement',      price:'From $199 / month',       cat:'hrt',                page:'hormones.html',           labs:'Baseline panel first',
       why:'Estrogen drops roughly 60 percent by age 40. A tailored HRT protocol addresses sleep, mood, energy and body composition together.' },
-    b12:       { name:'B-12 MIC',                 price:'$149.99 / month',         cat:'b12',                page:'nad.html',                labs:'Not required',
+    b12:       { name:'B-12 MIC',                 price:'$149.99 / month',         cat:'longevity',                page:'nad.html',                labs:'Not required',
       why:'The simplest place to start. A weekly B-12 MIC injection supporting energy, fat metabolism and recovery, with no long-term commitment.' },
     bloodwork: { name:'Longevity Bloodwork',      price:'Where TRT and HRT begin', cat:'bloodwork',          page:'bloodwork.html',          labs:'This is the panel',
       why:'Start with data. A full biomarker panel tells you and your provider exactly which protocol is worth your money before you spend it.' }
@@ -182,7 +182,7 @@
           form.reset();
           say(kind === 'contact'
             ? 'Thanks — your message is on its way. We usually reply within one business day.'
-            : 'Done. Check your inbox for the guide' + (/weight-loss|glp-1/.test(location.pathname) ? ' and your DF100 code.' : /bloodwork/.test(location.pathname) ? '.' : ' and your DF50 code.'), true);
+            : 'Done. Check your inbox for the guide' + (/weight-loss|glp-1/.test(location.pathname) ? ' and your MAC100 code.' : /bloodwork|testosterone|hormones/.test(location.pathname) ? '.' : ' and your MAC50 code.'), true);
         } else {
           say('That did not go through. Please try again, or email info@apexmd.com.', false);
         }

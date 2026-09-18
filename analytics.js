@@ -138,8 +138,8 @@
     var body = Object.assign({}, fields, {
       kind: kind || 'lead',
       page: location.pathname,
-      offer_code: /weight-loss|glp-1/.test(location.pathname) ? 'DF100'
-                : /bloodwork/.test(location.pathname) ? '' : 'DF50',
+      offer_code: /weight-loss|glp-1/.test(location.pathname) ? 'MAC100'
+                : /bloodwork|testosterone|hormones/.test(location.pathname) ? '' : 'MAC50',
       partner: 'MAC'
     }, stored);
     track(kind === 'contact' ? 'Contact' : 'Lead', { kind: kind || 'lead', page: location.pathname });

@@ -1,5 +1,5 @@
 /*
- * Lead delivery for the The M.A.C. microsite.
+ * Lead delivery for the M.A.C. microsite.
  *
  * Every form on the site (the member-guide email capture on all 12 pages, and
  * the full contact form) POSTs JSON here. This function emails the lead to the

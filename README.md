@@ -3,8 +3,6 @@
 Static partner microsite for The M.A.C. (Midwest Athletic Club), Cedar Rapids /
 Marion, IA. Edit the `*.html` files directly; there is no build step.
 
-Modelled on the DF360 site (`DF360-revamp` repo / df-360-revamp.vercel.app): same
-section architecture, quiz, offer bar and page set, rebranded to The M.A.C.
 
 - **Deploy:** Vercel, auto-deploying from `main`. Repo root is the site root.
 - **Brand tokens:** `mac-theme.css` (`:root`). The MAC × Apex MD accent is

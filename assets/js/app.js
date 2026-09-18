@@ -1,5 +1,5 @@
 /* ============================================================
-   eos.apexmd.com — behaviour layer
+   mac.apexmd.com — behaviour layer
    1. Home-club selection, persisted and written into every intake URL
       so each signup is attributable to a specific location.
    2. The 2-minute assessment modal (goal / stage / labs -> program).
@@ -10,8 +10,7 @@
   'use strict';
 
   /* ---- configuration ----
-     The EōS intake lives on its own partner subdomain, matching the pattern
-     every other Apex MD partner follows (formvibe, formmac, ...). It takes
+     The M.A.C. intake lives on its own partner subdomain, formmac.apexmd.com. It takes
      a categoryId, not the flow/program names this file used to send.
 
      Valid categories: weight-loss | trt | hrt | longevity | bloodwork
@@ -25,13 +24,12 @@
   /* Default category per CTA kind. An element may override with
      data-category="..." — the generated pages set it per page. */
   var CATEGORY_FOR = {
-    'body-scan':  'bloodwork',   /* The M.A.C. has no scanner; bloodwork is the diagnostics entry point */
+    'body-scan':  'bloodwork',   /* bloodwork is the diagnostics entry point */
     'assessment': 'weight-loss', /* overridden per page via data-category */
     'rec':        'weight-loss'  /* replaced by the assessment's own recommendation */
   };
 
-  // CLUBS removed for The M.A.C.: the EoS list was invented demo data
-  // (EOS-PHX-014 etc), and The M.A.C.'s intake takes no club param.
+  // No club picker: formmac.apexmd.com takes no club param.
   var CLUBS = [];
 
   var state = { club: null, aGoal: null, aStage: null, aLabs: null, step: 1 };

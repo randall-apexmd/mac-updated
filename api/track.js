@@ -14,10 +14,7 @@
  * iDev matches on IP and credits the partner. The call MUST be server-side and
  * MUST carry the visitor's real IP, or the partner does not get paid.
  *
- * AFFILIATE IDS (one per partner subdomain):
- *   catalyst 133 | club24 143 | uscryotherapy 149 | 10fitness 159
- *   glencove 167 | recoveryproject 168 | fit 169 | vibefitness 171
- *   defined 176 | republicwellness 207 | mac 208
+ * AFFILIATE ID: mac.apexmd.com is iDev partner 208 (form: formmac.apexmd.com).
  */
 
 const crypto = require('crypto');

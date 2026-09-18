@@ -1,5 +1,5 @@
 /* ============================================================
-   eos.apexmd.com — dynamic layer
+   mac.apexmd.com — dynamic layer
    Additive behaviour only. Nothing here changes the authored
    layout; every feature is opt-in, degrades to the static page,
    and is disabled under prefers-reduced-motion.
@@ -31,18 +31,17 @@
     if (!header) return;
 
     var bar = document.createElement('div');
-    bar.className = 'eos-stickybar';
+    bar.className = 'mac-stickybar';
     bar.setAttribute('aria-hidden', 'true');       /* the real header stays the a11y entry point */
     bar.innerHTML =
-      '<div class="eos-stickybar__inner">' +
-        '<a class="eos-stickybar__logo" href="index.html">' +
-          /* The MAC mark leads the lockup, then Apex MD -- the reverse of the
-             EoS original, per the MAC launch kit. */
-          '<img src="img/mac/logo-mac-dark.webp" alt="" width="900" height="555">' +
+      '<div class="mac-stickybar__inner">' +
+        '<a class="mac-stickybar__logo" href="index.html">' +
+          /* The MAC mark leads the lockup, then Apex MD, per the MAC launch kit. */
+          '<img src="img/mac/logo-mac-dark.webp" alt="" width="360" height="180">' +
           '<span>Powered by</span>' +
           '<img src="img/mac/logo-apex-dark.webp" alt="" width="900" height="241">' +
         '</a>' +
-        '<a class="btn btn-primary eos-stickybar__cta" data-intake="body-scan" ' +
+        '<a class="btn btn-primary mac-stickybar__cta" data-intake="body-scan" ' +
            'href="https://formmac.apexmd.com/?categoryId=bloodwork" target="_blank" rel="noopener">Claim your offer</a>' +
       '</div>';
     document.body.appendChild(bar);
@@ -50,7 +49,7 @@
     /* app.js rewrites [data-intake] hrefs with the selected club on load;
        this element arrives after that, so mirror whatever the page already has. */
     var existing = $('[data-intake="body-scan"]');
-    var cta = $('.eos-stickybar__cta', bar);
+    var cta = $('.mac-stickybar__cta', bar);
     if (existing && existing.href) cta.href = existing.href;
     document.addEventListener('change', function () {
       var e = $('[data-intake="body-scan"]');
@@ -82,10 +81,10 @@
       var t = (sec.textContent || '');
       if (!/Month 1|Your Sermorelin journey|What to expect|month by month/i.test(t)) return;
       var grid = sec.querySelector('div[style*="grid-template-columns:repeat(4"]');
-      if (!grid || grid.classList.contains('eos-rail-host')) return;
-      grid.classList.add('eos-rail-host');
+      if (!grid || grid.classList.contains('mac-rail-host')) return;
+      grid.classList.add('mac-rail-host');
       var rail = document.createElement('div');
-      rail.className = 'eos-rail';
+      rail.className = 'mac-rail';
       rail.innerHTML = '<i></i>';
       grid.parentNode.insertBefore(rail, grid);
 
@@ -115,11 +114,11 @@
     if (!priceEl) return;
 
     var bar = document.createElement('div');
-    bar.className = 'eos-pricebar';
+    bar.className = 'mac-pricebar';
     bar.innerHTML =
-      '<div class="eos-pricebar__inner">' +
-        '<span class="eos-pricebar__label">' + (document.title.split('—')[0].split('|')[0].trim()) + '</span>' +
-        '<span class="eos-pricebar__price">' + priceEl.textContent.trim() + '</span>' +
+      '<div class="mac-pricebar__inner">' +
+        '<span class="mac-pricebar__label">' + (document.title.split('—')[0].split('|')[0].trim()) + '</span>' +
+        '<span class="mac-pricebar__price">' + priceEl.textContent.trim() + '</span>' +
         '<a class="btn btn-primary" data-intake="assessment" ' +
            'href="https://formmac.apexmd.com/?categoryId=bloodwork" target="_blank" rel="noopener">Start your intake</a>' +
       '</div>';
@@ -137,7 +136,7 @@
        reflect where the page IS, not only fire on a crossing, so it stays
        correct after in-page anchors and restored scroll positions. Hidden
        again near the foot of the page so it never covers the final CTA. */
-    var footer = document.querySelector('.eos-pricebar');
+    var footer = document.querySelector('.mac-pricebar');
     function onScroll() {
       var r = plan.getBoundingClientRect();
       var past = r.bottom < 0;
@@ -161,8 +160,8 @@
       var a = grid.children[0], b = grid.children[1];
       var aHasImg = !!a.querySelector('img'), bHasImg = !!b.querySelector('img');
       if (aHasImg === bHasImg) return;              /* only when one side is the image */
-      (aHasImg ? a : b).classList.add('eos-from-side');
-      (aHasImg ? b : a).classList.add('eos-from-below');
+      (aHasImg ? a : b).classList.add('mac-from-side');
+      (aHasImg ? b : a).classList.add('mac-from-below');
     });
   }
 

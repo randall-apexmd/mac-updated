@@ -76,7 +76,7 @@ a:hover { color: var(--color-accent-600); }
 /* Minimum reading size on small screens.
    The mobile rendering sets 11–11.5px on its disclaimer and legal paragraphs.
    That is fine for the uppercase tracking labels around them, but this is
-   prose a member has to actually read — prescribing conditions, the EōS
+   prose a member has to actually read — prescribing conditions, the partner
    marketing disclosure, the compounding notice. Raised to 12.5px for
    <p> only, so eyebrows, badges and the "Powered by" lockup label keep
    their intended size. Scoped to the mobile rendering; desktop untouched. */
@@ -159,7 +159,7 @@ a:hover { color: var(--color-accent-600); }
    ============================================================ */
 
 /* — 1. condensed sticky header — */
-.eos-stickybar {
+.mac-stickybar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   background: rgba(255,255,255,.94);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
@@ -168,38 +168,38 @@ a:hover { color: var(--color-accent-600); }
   transform: translateY(-100%);
   transition: transform .32s cubic-bezier(.22,.61,.36,1);
 }
-.eos-stickybar.is-shown { transform: none; }
-.eos-stickybar__inner {
+.mac-stickybar.is-shown { transform: none; }
+.mac-stickybar__inner {
   max-width: 1440px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
   gap: 20px; padding: 10px 64px;
 }
-.eos-stickybar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.eos-stickybar__logo img:first-child { height: 20px; width: auto; }
-.eos-stickybar__logo img:last-child  { height: 11px; width: auto; }
-.eos-stickybar__logo span {
+.mac-stickybar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.mac-stickybar__logo img:first-child { height: 20px; width: auto; }
+.mac-stickybar__logo img:last-child  { height: 11px; width: auto; }
+.mac-stickybar__logo span {
   font-size: 9px; letter-spacing: .13em; text-transform: uppercase;
   color: #6B6B6B; white-space: nowrap;
   border-left: 1px solid var(--color-divider); padding-left: 12px;
 }
-.eos-stickybar__cta { min-height: 36px; padding: 0 16px; font-size: 13.5px; }
+.mac-stickybar__cta { min-height: 36px; padding: 0 16px; font-size: 13.5px; }
 @media (min-width: 1441px) {
-  .eos-stickybar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
+  .mac-stickybar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
                           padding-right: calc((100vw - 1440px) / 2 + 64px); max-width: 100%; }
 }
 @media (max-width: 1023px) {
-  .eos-stickybar__inner { padding: 8px 18px; }
-  .eos-stickybar__logo span { display: none; }
+  .mac-stickybar__inner { padding: 8px 18px; }
+  .mac-stickybar__logo span { display: none; }
 }
 
 /* — 2. timeline progress rail — */
-.eos-rail { height: 3px; background: var(--color-divider); margin: 0 0 2px; overflow: hidden; }
-.eos-rail i { display: block; height: 100%; width: 0;
+.mac-rail { height: 3px; background: var(--color-divider); margin: 0 0 2px; overflow: hidden; }
+.mac-rail i { display: block; height: 100%; width: 0;
               background: var(--color-accent); transition: width .12s linear; }
-.page--desktop .eos-rail i, .page--mobile .eos-rail i { background: #FF4A38; }
+.page--desktop .mac-rail i, .page--mobile .mac-rail i { background: #FF4A38; }
 
 /* — 3. sticky price bar — */
-.eos-pricebar {
+.mac-pricebar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 49;
   background: rgba(13,16,19,.96);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
@@ -207,39 +207,39 @@ a:hover { color: var(--color-accent-600); }
   transform: translateY(100%);
   transition: transform .32s cubic-bezier(.22,.61,.36,1);
 }
-.eos-pricebar.is-shown { transform: none; }
-.eos-pricebar__inner {
+.mac-pricebar.is-shown { transform: none; }
+.mac-pricebar__inner {
   max-width: 1440px; margin: 0 auto;
   display: flex; align-items: center; gap: 18px; padding: 12px 64px;
 }
-.eos-pricebar__label { font-size: 14px; font-weight: 700; color: #F5F2ED;
+.mac-pricebar__label { font-size: 14px; font-weight: 700; color: #F5F2ED;
                        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.eos-pricebar__price { font-size: 22px; font-weight: 800; letter-spacing: -.02em;
+.mac-pricebar__price { font-size: 22px; font-weight: 800; letter-spacing: -.02em;
                        color: #FF4A38; margin-left: auto; white-space: nowrap; }
-.eos-pricebar .btn { min-height: 40px; padding: 0 18px; font-size: 14px; white-space: nowrap; }
+.mac-pricebar .btn { min-height: 40px; padding: 0 18px; font-size: 14px; white-space: nowrap; }
 @media (min-width: 1441px) {
-  .eos-pricebar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
+  .mac-pricebar__inner { padding-left: calc((100vw - 1440px) / 2 + 64px);
                          padding-right: calc((100vw - 1440px) / 2 + 64px); max-width: 100%; }
 }
 @media (max-width: 1023px) {
-  .eos-pricebar__inner { padding: 10px 18px; gap: 12px; }
-  .eos-pricebar__label { display: none; }
+  .mac-pricebar__inner { padding: 10px 18px; gap: 12px; }
+  .mac-pricebar__label { display: none; }
 }
 
 /* — 4. directional entry — */
-.js-motion [data-reveal] .eos-from-side  { transform: translateX(26px); opacity: 0;
+.js-motion [data-reveal] .mac-from-side  { transform: translateX(26px); opacity: 0;
   transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
-.js-motion [data-reveal] .eos-from-below { transform: translateY(20px); opacity: 0;
+.js-motion [data-reveal] .mac-from-below { transform: translateY(20px); opacity: 0;
   transition: opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
-.js-motion [data-reveal].is-in .eos-from-side,
-.js-motion [data-reveal].is-in .eos-from-below { transform: none; opacity: 1; }
+.js-motion [data-reveal].is-in .mac-from-side,
+.js-motion [data-reveal].is-in .mac-from-below { transform: none; opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  .eos-stickybar, .eos-pricebar { transition: none; }
-  .js-motion [data-reveal] .eos-from-side,
-  .js-motion [data-reveal] .eos-from-below { opacity: 1 !important; transform: none !important; }
+  .mac-stickybar, .mac-pricebar { transition: none; }
+  .js-motion [data-reveal] .mac-from-side,
+  .js-motion [data-reveal] .mac-from-below { opacity: 1 !important; transform: none !important; }
 }
-@media print { .eos-stickybar, .eos-pricebar { display: none !important; } }
+@media print { .mac-stickybar, .mac-pricebar { display: none !important; } }
 
   .hp-offerbar{
     display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px;
@@ -358,7 +358,7 @@ a:hover { color: var(--color-accent-600); }
   transition: background .16s, border-color .16s;
 }
 .aq-opt:hover { background: rgba(255, 255, 255, .09); border-color: rgba(255, 255, 255, .34); }
-.aq-opt.is-on { background: rgba(255, 59, 74, .15); border-color: #FF4A38; }
+.aq-opt.is-on { background: rgba(255, 74, 56, .15); border-color: #FF4A38; }
 .aq-tick {
   flex: 0 0 auto; position: relative; width: 18px; height: 18px; border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, .34); transition: background .16s, border-color .16s;
